@@ -1,0 +1,6 @@
+{
+  "name": "PitchCraft AI",
+  "description": "Premium AI-powered SaaS platform for freelancers to generate winning business proposals, quotations, client contracts, and follow-ups.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,76 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile and account preferences stored individually per user",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 255 },
+        "displayName": { "type": "string", "maxLength": 128 },
+        "photoURL": { "type": "string", "maxLength": 1024 },
+        "providerId": { "type": "string", "maxLength": 64 },
+        "role": { "type": "string", "maxLength": 32 },
+        "hourlyRate": { "type": "number" },
+        "currency": { "type": "string", "maxLength": 10 },
+        "agencyName": { "type": "string", "maxLength": 128 },
+        "bio": { "type": "string", "maxLength": 1000 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "lastLoginAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["uid", "email"]
+    },
+    "Proposal": {
+      "title": "Proposal",
+      "description": "PitchCraft freelance project proposal",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 255 },
+        "clientName": { "type": "string", "maxLength": 255 },
+        "clientEmail": { "type": "string", "maxLength": 255 },
+        "status": { "type": "string", "maxLength": 32 },
+        "amount": { "type": "number" },
+        "currency": { "type": "string", "maxLength": 10 },
+        "summary": { "type": "string", "maxLength": 2000 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "userId", "title"]
+    },
+    "Client": {
+      "title": "Client",
+      "description": "Client CRM entry associated with a user",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 255 },
+        "email": { "type": "string", "maxLength": 255 },
+        "company": { "type": "string", "maxLength": 255 },
+        "phone": { "type": "string", "maxLength": 64 },
+        "status": { "type": "string", "maxLength": 32 },
+        "notes": { "type": "string", "maxLength": 2000 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "userId", "name"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "entities.UserProfile" },
+      "description": "Individual user document containing profile, auth provider info, and workspace settings"
+    },
+    "/users/{userId}/proposals/{proposalId}": {
+      "schema": { "$ref": "entities.Proposal" },
+      "description": "Freelance proposals owned by the user"
+    },
+    "/users/{userId}/clients/{clientId}": {
+      "schema": { "$ref": "entities.Client" },
+      "description": "Client CRM records owned by the user"
+    }
+  }
+}

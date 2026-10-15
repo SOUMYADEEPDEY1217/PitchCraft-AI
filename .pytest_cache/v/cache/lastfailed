@@ -1,0 +1,5 @@
+{
+  "backend/tests/test_ai.py::test_generate_cover_letter": true,
+  "backend/tests/test_ai.py::test_generate_follow_up": true,
+  "backend/tests/test_database_layer.py::test_proposal_crud_with_json_and_relationships": true
+}

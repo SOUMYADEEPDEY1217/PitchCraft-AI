@@ -1,0 +1,317 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="100%" height="100%" fill="none">
+  <defs>
+    <!-- Background atmospheric glow filters -->
+    <filter id="orange-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="24" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="metallic-specular" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feSpecularLighting surfaceScale="3" specularConstant="1.2" specularExponent="28" lighting-color="#ffffff" in="blur" result="spec">
+        <fePointLight x="400" y="200" z="300" />
+      </feSpecularLighting>
+      <feComposite in="SourceGraphic" in2="spec" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" />
+    </filter>
+
+    <!-- Metallic Carbon & Chrome Gradients -->
+    <linearGradient id="chrome-head" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#E1E4EA" />
+      <stop offset="25%" stop-color="#8E939E" />
+      <stop offset="50%" stop-color="#24272E" />
+      <stop offset="70%" stop-color="#14161A" />
+      <stop offset="85%" stop-color="#383D47" />
+      <stop offset="100%" stop-color="#111215" />
+    </linearGradient>
+
+    <linearGradient id="gloss-cranial" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8" />
+      <stop offset="20%" stop-color="#A2A7B2" stop-opacity="0.3" />
+      <stop offset="60%" stop-color="#1C1E23" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#08090B" stop-opacity="0.9" />
+    </linearGradient>
+
+    <linearGradient id="dark-carbon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22252B" />
+      <stop offset="40%" stop-color="#15171B" />
+      <stop offset="80%" stop-color="#0B0C0E" />
+      <stop offset="100%" stop-color="#050506" />
+    </linearGradient>
+
+    <linearGradient id="titanium-plate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4F5561" />
+      <stop offset="35%" stop-color="#2E333B" />
+      <stop offset="70%" stop-color="#1A1D22" />
+      <stop offset="100%" stop-color="#0E1013" />
+    </linearGradient>
+
+    <linearGradient id="silver-rim" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9" />
+      <stop offset="30%" stop-color="#BFC1C5" stop-opacity="0.6" />
+      <stop offset="70%" stop-color="#60646D" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.8" />
+    </linearGradient>
+
+    <linearGradient id="neon-orange-glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF7B33" />
+      <stop offset="50%" stop-color="#FF5A00" />
+      <stop offset="100%" stop-color="#CC4000" />
+    </linearGradient>
+
+    <linearGradient id="visor-glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1C1F26" />
+      <stop offset="45%" stop-color="#0A0B0E" />
+      <stop offset="55%" stop-color="#000000" />
+      <stop offset="100%" stop-color="#12141A" />
+    </linearGradient>
+
+    <radialGradient id="orange-ambient-core" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#FF5A00" stop-opacity="0.35" />
+      <stop offset="40%" stop-color="#FF5A00" stop-opacity="0.12" />
+      <stop offset="80%" stop-color="#FF5A00" stop-opacity="0.02" />
+      <stop offset="100%" stop-color="#FF5A00" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="chest-core-hologram" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF7A29" />
+      <stop offset="50%" stop-color="#FF5A00" />
+      <stop offset="100%" stop-color="#993300" />
+    </linearGradient>
+
+    <linearGradient id="bevel-highlight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.7" />
+      <stop offset="50%" stop-color="#BFC1C5" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Atmospheric Background Glow -->
+  <circle cx="410" cy="480" r="380" fill="url(#orange-ambient-core)" />
+
+  <!-- Outer Aura Streamers -->
+  <g opacity="0.4" stroke="#FF5A00" stroke-width="1.2">
+    <path d="M180,450 Q280,380 400,390 T620,440" stroke-dasharray="4,8" />
+    <path d="M150,580 Q300,520 420,530 T660,560" stroke-dasharray="6,12" opacity="0.6" />
+    <circle cx="400" cy="390" r="3" fill="#FF5A00" filter="url(#soft-glow)" />
+    <circle cx="620" cy="440" r="2.5" fill="#FF7B33" />
+    <circle cx="180" cy="450" r="2" fill="#FF5A00" />
+  </g>
+
+  <!-- ================= ROBOT BUST STRUCTURE ================= -->
+  <g id="robot-bust" transform="translate(0, 30)">
+    
+    <!-- 1. BACK/TRAPEZIUS & SPINE SUPPORT FRAME -->
+    <path d="M230,720 L300,580 L500,580 L570,720 L660,880 L140,880 Z" fill="url(#dark-carbon)" />
+    <path d="M300,580 L350,780 L450,780 L500,580 Z" fill="#0C0D10" stroke="#22252C" stroke-width="2" />
+    
+    <!-- Spine Mechanical Conduit with Orange Pulse -->
+    <g id="spine-conduit">
+      <rect x="388" y="580" width="24" height="230" rx="12" fill="#0E1014" stroke="#262A33" stroke-width="1.5" />
+      <rect x="394" y="600" width="12" height="12" rx="4" fill="url(#neon-orange-glow)" filter="url(#soft-glow)" />
+      <rect x="394" y="630" width="12" height="12" rx="4" fill="url(#neon-orange-glow)" filter="url(#soft-glow)" />
+      <rect x="394" y="660" width="12" height="12" rx="4" fill="url(#neon-orange-glow)" filter="url(#soft-glow)" />
+      <rect x="394" y="690" width="12" height="12" rx="4" fill="url(#neon-orange-glow)" filter="url(#soft-glow)" />
+      <rect x="394" y="720" width="12" height="12" rx="4" fill="url(#neon-orange-glow)" filter="url(#soft-glow)" />
+      <rect x="394" y="750" width="12" height="12" rx="4" fill="url(#neon-orange-glow)" filter="url(#soft-glow)" />
+      <line x1="400" y1="585" x2="400" y2="780" stroke="#FF7A29" stroke-width="1" opacity="0.8" />
+    </g>
+
+    <!-- 2. DELTOID & SHOULDER ARMOR PLATES -->
+    <!-- Left Shoulder Assembly -->
+    <g id="left-shoulder">
+      <path d="M120,860 C130,730 200,660 290,650 L270,710 C210,720 160,770 145,860 Z" fill="url(#titanium-plate)" stroke="#4A505C" stroke-width="1.5" />
+      <path d="M145,860 C160,760 220,710 280,700 L265,770 C220,780 180,820 170,870 Z" fill="url(#chrome-head)" opacity="0.8" />
+      <path d="M125,740 L210,705" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.7" />
+      <circle cx="210" cy="705" r="3" fill="#FF5A00" filter="url(#soft-glow)" />
+      <!-- Pneumatic Joint -->
+      <circle cx="260" cy="740" r="18" fill="#131519" stroke="#3A3F4B" stroke-width="3" />
+      <circle cx="260" cy="740" r="10" fill="#08090B" />
+      <circle cx="260" cy="740" r="4" fill="#FF5A00" />
+    </g>
+
+    <!-- Right Shoulder Assembly -->
+    <g id="right-shoulder">
+      <path d="M680,860 C670,730 600,660 510,650 L530,710 C590,720 640,770 655,860 Z" fill="url(#titanium-plate)" stroke="#4A505C" stroke-width="1.5" />
+      <path d="M655,860 C640,760 580,710 520,700 L535,770 C580,780 620,820 630,870 Z" fill="url(#chrome-head)" opacity="0.8" />
+      <path d="M675,740 L590,705" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.7" />
+      <circle cx="590" cy="705" r="3" fill="#FF5A00" filter="url(#soft-glow)" />
+      <!-- Pneumatic Joint -->
+      <circle cx="540" cy="740" r="18" fill="#131519" stroke="#3A3F4B" stroke-width="3" />
+      <circle cx="540" cy="740" r="10" fill="#08090B" />
+      <circle cx="540" cy="740" r="4" fill="#FF5A00" />
+    </g>
+
+    <!-- 3. CHEST / PECTORAL CHASSIS -->
+    <g id="chest-chassis">
+      <!-- Outer Pectoral Shield Left -->
+      <path d="M250,710 L370,680 L380,830 L280,880 L220,830 Z" fill="url(#dark-carbon)" stroke="#2F343E" stroke-width="2" />
+      <!-- Specular Highlight -->
+      <path d="M255,715 L365,685" stroke="#BFC1C5" stroke-width="2" stroke-linecap="round" opacity="0.7" />
+
+      <!-- Outer Pectoral Shield Right -->
+      <path d="M550,710 L430,680 L420,830 L520,880 L580,830 Z" fill="url(#dark-carbon)" stroke="#2F343E" stroke-width="2" />
+      <!-- Specular Highlight -->
+      <path d="M545,715 L435,685" stroke="#BFC1C5" stroke-width="2" stroke-linecap="round" opacity="0.7" />
+
+      <!-- Central Sternum & Power Core (PitchCraft AI Reactor) -->
+      <path d="M375,670 L425,670 L435,780 L400,830 L365,780 Z" fill="#0C0E12" stroke="#3A404D" stroke-width="2" />
+      
+      <!-- Glowing Hexagonal Core -->
+      <polygon points="400,715 425,730 425,760 400,775 375,760 375,730" fill="url(#chest-core-hologram)" filter="url(#orange-glow)" />
+      <polygon points="400,722 418,733 418,755 400,767 382,755 382,733" fill="#FFE5D6" opacity="0.9" />
+      <circle cx="400" cy="745" r="6" fill="#FFFFFF" />
+
+      <!-- Emitted Energy Lines from Core -->
+      <line x1="375" y1="745" x2="310" y2="745" stroke="#FF5A00" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.8" />
+      <line x1="425" y1="745" x2="490" y2="745" stroke="#FF5A00" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.8" />
+      <line x1="400" y1="775" x2="400" y2="835" stroke="#FF7B33" stroke-width="2" opacity="0.9" />
+
+      <!-- Technical Stencil Markings -->
+      <text x="310" y="800" fill="#6A707E" font-family="monospace" font-size="9" letter-spacing="2">PITCHCRAFT // CORE 01</text>
+      <text x="440" y="800" fill="#FF7B33" font-family="monospace" font-size="8" letter-spacing="1">LOCAL ENGINE [ONLINE]</text>
+    </g>
+
+    <!-- 4. NECK & HYDRAULIC STRUTS -->
+    <g id="neck-assembly">
+      <!-- Central Neck Column -->
+      <rect x="365" y="490" width="70" height="110" rx="15" fill="#121419" stroke="#2D323C" stroke-width="2" />
+      <line x1="400" y1="495" x2="400" y2="590" stroke="#FF5A00" stroke-width="2" filter="url(#soft-glow)" />
+
+      <!-- Left Hydraulic Strut -->
+      <g>
+        <rect x="330" y="500" width="22" height="95" rx="10" fill="url(#chrome-head)" stroke="#4E5564" stroke-width="1.5" />
+        <line x1="337" y1="505" x2="337" y2="585" stroke="#FFFFFF" stroke-width="1.5" opacity="0.75" />
+        <!-- Piston Seal -->
+        <rect x="328" y="540" width="26" height="8" rx="2" fill="#FF5A00" />
+      </g>
+
+      <!-- Right Hydraulic Strut -->
+      <g>
+        <rect x="448" y="500" width="22" height="95" rx="10" fill="url(#chrome-head)" stroke="#4E5564" stroke-width="1.5" />
+        <line x1="455" y1="505" x2="455" y2="585" stroke="#FFFFFF" stroke-width="1.5" opacity="0.75" />
+        <!-- Piston Seal -->
+        <rect x="446" y="540" width="26" height="8" rx="2" fill="#FF5A00" />
+      </g>
+
+      <!-- Collarbone Carbon Frame -->
+      <path d="M280,590 L360,590 L400,615 L440,590 L520,590 L490,630 L310,630 Z" fill="url(#titanium-plate)" stroke="#404652" stroke-width="2" />
+      <!-- Collarbone Orange Micro-LEDs -->
+      <circle cx="330" cy="610" r="2.5" fill="#FF5A00" filter="url(#soft-glow)" />
+      <circle cx="360" cy="610" r="2.5" fill="#FF5A00" filter="url(#soft-glow)" />
+      <circle cx="440" cy="610" r="2.5" fill="#FF5A00" filter="url(#soft-glow)" />
+      <circle cx="470" cy="610" r="2.5" fill="#FF5A00" filter="url(#soft-glow)" />
+    </g>
+
+    <!-- 5. CRANIAL & HEAD STRUCTURE -->
+    <g id="head-structure">
+      <!-- Head Base Silhouette -->
+      <path d="M270,300 C265,160 330,80 400,80 C470,80 535,160 530,300 C528,380 490,480 400,500 C310,480 272,380 270,300 Z" fill="url(#dark-carbon)" />
+
+      <!-- Cranial Crown Dome (Glossy Chrome & Specular Curve) -->
+      <path d="M285,270 C280,150 335,90 400,90 C465,90 520,150 515,270 C480,240 440,230 400,230 C360,230 320,240 285,270 Z" fill="url(#chrome-head)" stroke="#4A5160" stroke-width="1.5" />
+      
+      <!-- Crown Top Specular Glaze -->
+      <path d="M315,190 C330,125 365,100 400,100 C435,100 470,125 485,190 C455,165 425,155 400,155 C375,155 345,165 315,190 Z" fill="url(#gloss-cranial)" />
+      <ellipse cx="400" cy="120" rx="65" ry="14" fill="#FFFFFF" opacity="0.6" />
+
+      <!-- Jaw / Mandible Armor Plating -->
+      <path d="M300,380 L340,490 L400,515 L460,490 L500,380 L460,410 L400,430 L340,410 Z" fill="url(#titanium-plate)" stroke="#393F4C" stroke-width="2" />
+      <!-- Mandible Highlights -->
+      <path d="M340,490 L400,515 L460,490" stroke="#BFC1C5" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.8" />
+      <line x1="400" y1="435" x2="400" y2="510" stroke="#FF5A00" stroke-width="1.5" opacity="0.7" />
+
+      <!-- Cheek Titanium Insets -->
+      <!-- Left Cheek Plate -->
+      <path d="M272,310 L318,335 L332,410 L285,385 Z" fill="url(#chrome-head)" stroke="#4D5564" stroke-width="1.5" />
+      <path d="M275,315 L315,340" stroke="#FFFFFF" stroke-width="1.5" opacity="0.8" />
+
+      <!-- Right Cheek Plate -->
+      <path d="M528,310 L482,335 L468,410 L515,385 Z" fill="url(#chrome-head)" stroke="#4D5564" stroke-width="1.5" />
+      <path d="M525,315 L485,340" stroke="#FFFFFF" stroke-width="1.5" opacity="0.8" />
+
+      <!-- Ear Sensory Actuators -->
+      <!-- Left Ear Pod -->
+      <g transform="translate(250, 290)">
+        <ellipse cx="15" cy="25" rx="12" ry="24" fill="#15171C" stroke="#484F5D" stroke-width="2" />
+        <circle cx="15" cy="25" r="7" fill="#0A0B0E" stroke="#FF5A00" stroke-width="1.5" />
+        <circle cx="15" cy="25" r="3" fill="#FF5A00" filter="url(#soft-glow)" />
+      </g>
+      <!-- Right Ear Pod -->
+      <g transform="translate(520, 290)">
+        <ellipse cx="15" cy="25" rx="12" ry="24" fill="#15171C" stroke="#484F5D" stroke-width="2" />
+        <circle cx="15" cy="25" r="7" fill="#0A0B0E" stroke="#FF5A00" stroke-width="1.5" />
+        <circle cx="15" cy="25" r="3" fill="#FF5A00" filter="url(#soft-glow)" />
+      </g>
+
+      <!-- 6. HIGH-TECH REFLECTIVE VISOR & OCULAR HUD -->
+      <g id="visor-assembly">
+        <!-- Visor Dark Mirror Cavity -->
+        <path d="M305,280 C320,265 360,255 400,255 C440,255 480,265 495,280 C500,320 480,365 400,375 C320,365 300,320 305,280 Z" fill="url(#visor-glass)" stroke="#1B1E26" stroke-width="2.5" />
+        
+        <!-- Visor Gloss Reflection Arc -->
+        <path d="M315,285 C335,272 370,265 400,265 C430,265 465,272 485,285 C460,295 430,300 400,300 C370,300 340,295 315,285 Z" fill="#FFFFFF" opacity="0.25" />
+
+        <!-- Futuristic Glowing Orange Eye Slit / Ocular Scanner Line -->
+        <g id="ocular-hud">
+          <!-- Horizon Laser Visor Bar -->
+          <path d="M325,320 C350,326 375,328 400,328 C425,328 450,326 475,320" stroke="#FF5A00" stroke-width="4" stroke-linecap="round" filter="url(#orange-glow)" />
+          <path d="M340,320 C360,325 380,327 400,327 C420,327 440,325 460,320" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+          
+          <!-- Dual Ocular Focus Apertures (Left & Right Eyes) -->
+          <circle cx="365" cy="322" r="5" fill="#FFE5D6" filter="url(#soft-glow)" />
+          <circle cx="365" cy="322" r="2" fill="#FFFFFF" />
+          <circle cx="435" cy="322" r="5" fill="#FFE5D6" filter="url(#soft-glow)" />
+          <circle cx="435" cy="322" r="2" fill="#FFFFFF" />
+
+          <!-- HUD Digital Targeting Brackets -->
+          <path d="M350,312 L345,312 L345,332 L350,332" stroke="#FF5A00" stroke-width="1.2" fill="none" opacity="0.8" />
+          <path d="M450,312 L455,312 L455,332 L450,332" stroke="#FF5A00" stroke-width="1.2" fill="none" opacity="0.8" />
+        </g>
+
+        <!-- Nose Bridge Cyber Seam -->
+        <line x1="400" y1="335" x2="400" y2="395" stroke="#252A33" stroke-width="2" />
+        <line x1="395" y1="395" x2="405" y2="395" stroke="#3A404D" stroke-width="2" />
+      </g>
+
+      <!-- 7. FOREHEAD / NEURAL PROCESSOR ACCENTS -->
+      <g id="neural-processor">
+        <polygon points="400,165 415,185 400,205 385,185" fill="#101217" stroke="#3D4350" stroke-width="1.5" />
+        <circle cx="400" cy="185" r="4" fill="#FF5A00" filter="url(#soft-glow)" />
+        <circle cx="400" cy="185" r="1.5" fill="#FFFFFF" />
+        
+        <!-- Micro-Circuit Inlays -->
+        <path d="M385,185 L360,185 L350,200" stroke="#FF5A00" stroke-width="1" fill="none" opacity="0.75" />
+        <circle cx="350" cy="200" r="1.5" fill="#FF5A00" />
+        
+        <path d="M415,185 L440,185 L450,200" stroke="#FF5A00" stroke-width="1" fill="none" opacity="0.75" />
+        <circle cx="450" cy="200" r="1.5" fill="#FF5A00" />
+      </g>
+
+      <!-- 8. TEMPLE & BROW HIGH-PRECISION LINES -->
+      <path d="M310,240 C340,230 370,225 400,225 C430,225 460,230 490,240" stroke="#666D7C" stroke-width="1.2" stroke-dasharray="8,4" fill="none" opacity="0.6" />
+      <path d="M290,265 L320,250" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" opacity="0.7" />
+      <path d="M510,265 L480,250" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" opacity="0.7" />
+    </g>
+
+    <!-- Bottom Rim Fog Fade to Black -->
+    <rect x="0" y="860" width="800" height="140" fill="url(#bottom-fade)" />
+  </g>
+
+  <!-- Bottom Gradient Mask for seamless blending -->
+  <linearGradient id="bottom-fade" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#090909" stop-opacity="0" />
+    <stop offset="60%" stop-color="#090909" stop-opacity="0.7" />
+    <stop offset="100%" stop-color="#090909" stop-opacity="1" />
+  </linearGradient>
+</svg>

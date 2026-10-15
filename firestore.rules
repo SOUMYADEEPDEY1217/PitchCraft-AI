@@ -1,0 +1,53 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Connection testing endpoint for getDocFromServer test
+    match /test/{docId} {
+      allow read: if true;
+    }
+
+    // User profile document stored individually per user
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false; // Users cannot list other users
+      allow create, update: if isOwner(userId);
+      allow delete: if false;
+
+      // User's proposals subcollection - strictly isolated to the authenticated owner
+      match /proposals/{proposalId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // User's clients subcollection - strictly isolated to the authenticated owner
+      match /clients/{clientId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // User's saved pricing estimates
+      match /pricingEstimates/{estimateId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // User's AI generation history
+      match /aiHistory/{historyId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    // Default deny for all other paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
