@@ -12,7 +12,7 @@ import {
 import { storage } from './storage';
 import { aiGenerator } from './aiGenerator';
 
-const DEFAULT_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const DEFAULT_API_URL = import.meta.env.VITE_API_URL || '';
 const DEFAULT_OLLAMA_URL = import.meta.env.VITE_OLLAMA_URL || 'http://localhost:11434';
 
 export interface DashboardStats {
@@ -37,12 +37,28 @@ export class ApiService {
 
   constructor() {
     const settings = storage.getSettings();
-    this.apiUrl = settings.fastApiUrl || DEFAULT_API_URL;
+    const isBrowser = typeof window !== 'undefined';
+    const isCloudHosted = isBrowser && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+    const configuredUrl = settings.fastApiUrl;
+
+    if (isCloudHosted && configuredUrl && (configuredUrl.includes('localhost') || configuredUrl.includes('127.0.0.1'))) {
+      this.apiUrl = import.meta.env.VITE_API_URL || '';
+    } else {
+      this.apiUrl = configuredUrl || DEFAULT_API_URL;
+    }
     this.ollamaUrl = settings.ollamaUrl || DEFAULT_OLLAMA_URL;
   }
 
   public updateConfig(settings: AppSettings) {
-    this.apiUrl = settings.fastApiUrl || DEFAULT_API_URL;
+    const isBrowser = typeof window !== 'undefined';
+    const isCloudHosted = isBrowser && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+    const configuredUrl = settings.fastApiUrl;
+
+    if (isCloudHosted && configuredUrl && (configuredUrl.includes('localhost') || configuredUrl.includes('127.0.0.1'))) {
+      this.apiUrl = import.meta.env.VITE_API_URL || '';
+    } else {
+      this.apiUrl = configuredUrl || DEFAULT_API_URL;
+    }
     this.ollamaUrl = settings.ollamaUrl || DEFAULT_OLLAMA_URL;
   }
 
